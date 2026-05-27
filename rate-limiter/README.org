@@ -62,3 +62,14 @@ This is actually closer to:
 ** Questions
 - What should be the key that is to be used?
 - Why do we allow if tokens are remaining? Well because tokens are remaining, we don't need to check the time.
+** Problems
+*** Missing Burst protection
+All requests can be send in a burst instead of evenly spaced out.
+*** Boundary burst issue
+At the boundaries, the traffic can be send in bursts during window reset. So, at the boundary, 1 millisecond before can send all the traffic, then one millisecond after the window reset, can send another full burst of traffic.
+*** Traffic stampede at reset
+When users figure out when the reset is going to happen, everyone might start pressuring the system at the exact same time.
+*** Sync in distributed systems
+Since everyone must agree on the remaining count or window, it is hard to stay in sync because of memory contention issues.
+*** Unfair
+Users who start near the reset boundary get quota replishment faster as compared to those who arrive after the window resets.

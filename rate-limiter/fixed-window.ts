@@ -3,7 +3,7 @@ type CounterState = {
   windowStart: number;
 };
 
-class FixedWindowRateLimiter {
+export default class FixedWindowRateLimiter {
   state: Map<string, CounterState> = new Map();
 
   limit: number;
