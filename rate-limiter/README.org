@@ -1,0 +1,64 @@
+#+title: Rate Limiter
+
+A rate limiter is one of the best systems to learn distributed systems thinking because it touches:
+- scheduling
+- fairness
+- contention
+- time
+- queues
+- memory
+- consistency
+- distributed coordination
+- backpressure
+- failure handling
+
+Rate limiting is fundamentally about controlling resource allocation under contention.
+
+* What is a rate limiter?
+A rate limiter is a control plane that decides whether work is allowed to proceed. Usually based on:
+- time
+- identity
+- resource usage
+- concurrency
+- quotas
+* Mental Model
+** Parts of a Rate Limiter 
+Each rate limtier has 3 components/parts:
+1. Identity - Who are we limiting?
+2. Policy - What are the rules?
+3. State Store - Where are we tracking usage?
+** Types of Rate limiters
+There are fundamentally only 2 types of rate limiters:
+*** Request-count based
+It controls how many operations happen over time. Example: 100 requests/minute.
+
+There are various algorithms that can be used to implement this:
+- Fixed window
+- Sliding window
+- Sliding log
+- Token bucket
+- Leaky bucket
+
+This is what most people mean by "rate limiter."
+*** Concurrency-based
+It controls how many operations are simultaneously running. Examples:
+- max 10 Puppeteer pages
+- max 50 DB connections
+- max 5 active jobs
+
+This is actually closer to:
+- semaphores
+- worker pools
+- admission control
+* Rate Limiters to build
+- Fixed window
+- Sliding window
+- Sliding log
+- Token bucket
+- Leaky bucket
+- Concurrency Limiter (Definitely)
+- Priority-aware rate limiting
+* Fixed Window Rate Limiter
+** Questions
+- What should be the key that is to be used?
+- Why do we allow if tokens are remaining? Well because tokens are remaining, we don't need to check the time.
