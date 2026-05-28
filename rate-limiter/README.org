@@ -52,8 +52,8 @@ This is actually closer to:
 - admission control
 * Rate Limiters to build
 - Fixed window
-- Sliding window
-- Sliding log
+- Sliding window counter
+- Sliding window log
 - Token bucket
 - Leaky bucket
 - Concurrency Limiter (Definitely)
